@@ -5,14 +5,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 basis = 20
-amplitude = 10
+amplitudes = 10
 Fs = 500
 f = 5
 sample = 200
-x = np.arange(sample)
-y = basis + np.sin(2 * np.pi * f * x / Fs) * amplitude
+t = np.arange(sample)
+quer = basis + np.sin(2 * np.pi * f * t / Fs) * amplitudes
 #y = np.sin(2 * np.pi * f * x / Fs) * 10 + 20
 
-plt.plot(y)
+print(quer)
+plt.plot(quer)
 plt.show()
 
