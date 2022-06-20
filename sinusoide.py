@@ -14,6 +14,7 @@ quer = basis + np.sin(2 * np.pi * f * t / Fs) * amplitudes
 #y = np.sin(2 * np.pi * f * x / Fs) * 10 + 20
 
 print(quer)
+print(quer[2])
 plt.plot(quer)
 plt.show()
 
