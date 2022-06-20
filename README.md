@@ -9,8 +9,8 @@ Step by Step:
    or
     curl 192.168.222.19:9000 > /dev/null 2>&1
 
-3) run pgenerator:
-
+3) run pgenerator and their graph:
+    python3 gen02.py
 
 keywords:
 python fourier transform tutorial
