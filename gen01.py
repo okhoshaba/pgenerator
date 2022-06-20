@@ -5,33 +5,27 @@ import _thread
 import time
 import os
 
-
-def run_amplitude( threadName, delay, amplitude):
-   count = 0
-   while count < amplitude:
+    # Internal cycles = intCount
+def runAmplitude(threadName, amplitude):
+   intCount = 0
+   while intCount < amplitude:
 #   while count < 5:
-      time.sleep(delay)
-      count += 1
-      print ("%s, %s: %s" % ( threadName, count, time.ctime(time.time()) ))
+#   Not nesessary...
+#      time.sleep(delay)
+      intCount += 1
+      print ("%s, %s: %s" % (threadName, intCount, time.ctime(time.time()) ))
 
 try:
-   _thread.start_new_thread(run_amplitude, ("Amplitude = 1", 0.2, 10, ) )
-#   os.system("echo Hello from the other side!")
-   os.system("ls -l")
-#   print("End generator 1")
-   time.sleep(0.2)
-   _thread.start_new_thread(run_amplitude, ("Amplitude == 2", 0.4, 5, ) )
+    # External cycles = extCount
+   for extCount in range(6):
+       _thread.start_new_thread(runAmplitude, (extCount, 10, ) )
+       os.system("curl 192.168.222.19:9000 > /dev/null 2>&1")
+       time.sleep(0.1)
 
-#   print("End generator 2")
 except:
-   print ("Error run generator")
-
-# print("End generator")
-
-
-print("End generatorAll")
+   print("Error run generator")
 
 # Wait for End process
-time.sleep(3)
+time.sleep(13)
 while 0:
    pass
