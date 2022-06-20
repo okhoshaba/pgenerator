@@ -19,7 +19,8 @@ try:
     # External cycles = extCount
    for extCount in range(6):
        _thread.start_new_thread(runAmplitude, (extCount, 10, ) )
-       os.system("curl 192.168.222.19:9000 > /dev/null 2>&1")
+       os.system("echo curl")
+#       os.system("curl 192.168.222.19:9000 > /dev/null 2>&1")
        time.sleep(0.1)
 
 except:
