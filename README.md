@@ -10,6 +10,8 @@ https://www.tutorialspoint.com/concurrency_in_python/concurrency_in_python_quick
 
 keywords:
 python command execution
+curl 192.168.222.19:9000 > /dev/null 2>&1
+
 
 
 keywords:

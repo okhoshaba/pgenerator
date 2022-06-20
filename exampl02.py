@@ -13,8 +13,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.wfile.write("Test World !".encode())
 
 myServer = HTTPServer((hostName, hostPort), MyServer)
-# For diagnostitcs only
-#print(time.asctime(), "Server Starts - %s:%s" % (hostName, hostPort))
+print(time.asctime(), "Server Starts - %s:%s" % (hostName, hostPort))
 
 try:
     myServer.serve_forever()
