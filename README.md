@@ -1,5 +1,16 @@
 # python generator for services
 
+Step by Step:
+1) run services:
+  python3 http_service.py
+
+2) check services:
+    curl 192.168.222.19:9000
+   or
+    curl 192.168.222.19:9000 > /dev/null 2>&1
+
+3) run pgenerator:
+
 
 keywords:
 python fourier transform tutorial
