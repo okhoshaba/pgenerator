@@ -11,3 +11,9 @@ https://www.tutorialspoint.com/concurrency_in_python/concurrency_in_python_quick
 keywords:
 python command execution
 
+
+keywords:
+python services
+https://stackoverflow.com/questions/23264569/python-3-x-basehttpserver-or-http-server
+
+
