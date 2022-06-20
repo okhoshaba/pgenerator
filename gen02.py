@@ -15,7 +15,7 @@ sample = 200
 t = np.arange(sample)
 quer = basis + np.sin(2 * np.pi * f * t / Fs) * amplitudes
 
-    # Internal cycles = intCount
+# Internal cycles = intCount
 def runAmplitude(threadName, amplitude):
    intCount = 0
    while intCount < amplitude:
@@ -32,6 +32,10 @@ try:
 
 except:
    print("Error run generator")
+
+# Build a graph
+plt.plot(quer)
+plt.show()
 
 # Wait for End process
 time.sleep(13)
