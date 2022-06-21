@@ -11,7 +11,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.pyplot as loadTrajectory
 import scipy
-from scipy.fftpack import fft
 
 basis = 20
 amplitudes = 10
@@ -49,21 +48,15 @@ except:
    print("Error run generator")
 
 # Build a graph
-#print(quer)
-#print(processingTime)
-
-#plt.plot(quer)
-loadTrajectory.plot(quer)
-loadTrajectory.title('Load Trajectory')
-loadTrajectory.xlabel('Time (in sec)')
-loadTrajectory.ylabel('Amplitude (in queries)')
-loadTrajectory.show()
+# loadTrajectory.plot(quer)
+# loadTrajectory.title('Load Trajectory')
+# loadTrajectory.xlabel('Time (in sec)')
+# loadTrajectory.ylabel('Amplitude (in queries)')
+# loadTrajectory.show()
 
 #plt.plot(processingTime)
 # !! plt.plot(responseTime)
 # !! plt.show()
-
-RT = fft(responseTime)
 
 plt.subplot(3,1,1)
 plt.plot(responseTime)
