@@ -8,6 +8,7 @@ import os
 from xml.etree.ElementTree import ProcessingInstruction
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.pyplot as loadTrajectory
 
 basis = 20
 amplitudes = 10
@@ -41,10 +42,13 @@ except:
 #print(processingTime)
 
 #plt.plot(quer)
+loadTrajectory.plot(quer)
+loadTrajectory.show()
+
 plt.plot(processingTime)
 plt.show()
 
 # Wait for End process
-time.sleep(13)
+#time.sleep(13)
 while 0:
    pass
