@@ -2,8 +2,10 @@
 # From https://www.tutorialspoint.com/concurrency_in_python/concurrency_in_python_quick_guide.htm
 
 import _thread
+from concurrent.futures import process
 import time
 import os
+from xml.etree.ElementTree import ProcessingInstruction
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -14,6 +16,7 @@ f = 5
 sample = 200
 t = np.arange(sample)
 quer = basis + np.sin(2 * np.pi * f * t / Fs) * amplitudes
+processingTime = 0.1 / quer
 
 # Internal cycles = intCount
 def runAmplitude(threadName, amplitude):
@@ -34,7 +37,11 @@ except:
    print("Error run generator")
 
 # Build a graph
-plt.plot(quer)
+#print(quer)
+#print(processingTime)
+
+#plt.plot(quer)
+plt.plot(processingTime)
 plt.show()
 
 # Wait for End process
