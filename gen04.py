@@ -13,11 +13,11 @@ import matplotlib.pyplot as loadTrajectory
 import scipy.fftpack
 import math
 
-basis = 20
-amplitudes = 10
+basis = 9
+amplitudes = 3
 Fs = 1000
 dt = 1/Fs   # Период времени
-Fc = 25
+Fc = 10
 sample = 1000
 t = np.arange(sample)
 loadImpact = np.arange(sample)
@@ -31,7 +31,7 @@ processingTime = 0.1 / quer
 def runAmplitude(threadName, amplitude):
    intCount = 0
    while intCount < amplitude:
-      os.system("curl 192.168.1.108:9000 > /dev/null 2>&1")
+      os.system("curl 192.168.1.104:9000 > /dev/null 2>&1")
       intCount += 1
 #     For diagnose only
 #      print("amplitude = %s" % (intCount))
@@ -46,9 +46,7 @@ try:
       responseTime[extCount] = endTime - startTime
       rp = responseTime[extCount]/1000000
       loadImpact[extCount] = math.log10(0.1/rp) * 1000
-#      procTime[extCount] = 0.1 / quer[extCount]
-#      print("%s, %s, %s, %s " % (extCount, int(quer[extCount]), procTime[extCount], responseTime[extCount]))
-      print("%s, %s, %s, %s, %s, %s, %s" % (extCount, int(quer[extCount]), 0.1, responseTime[extCount]/1000000, 0.1/rp, math.log10(0.1/rp)*10, loadImpact[extCount]))
+#!!      print("%s, %s, %s, %s, %s, %s, %s" % (extCount, int(quer[extCount]), 0.1, responseTime[extCount]/1000000, 0.1/rp, math.log10(0.1/rp)*10, loadImpact[extCount]))
       time.sleep(0.1)
 #      os.system("curl 192.168.222.19:9000 > /dev/null 2>&1")
       #os.system("echo curl")
@@ -86,6 +84,8 @@ ax.plot(xf2, 2.0/Fs * np.abs(yf2[:Fs//2]), label='Integer number of periods')
 plt.legend()
 plt.grid()
 plt.show()
+
+#print(yf2[:Fs//2])
 
 #plt.plot(processingTime)
 #  plt.plot(responseTime)
