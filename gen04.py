@@ -13,8 +13,8 @@ import matplotlib.pyplot as loadTrajectory
 import scipy.fftpack
 import math
 
-basis = 50
-amplitudes = 40
+basis = 100
+amplitudes = 50
 Fs = 100
 dt = 1/Fs   # Период времени
 Fc = 10
@@ -45,7 +45,7 @@ try:
       startTime = time.time_ns()
       _thread.start_new_thread(runAmplitude, (extCount, int(quer[extCount]), ) )
       endTime = time.time_ns()
-      newRT = (endTime - startTime)/1000000000
+      newRT = (endTime - startTime)/1000000
       newPT = 0.1/quer[extCount]
       newLI = math.log10(newRT/newPT)*10.0
       loadImpact[extCount] = newLI
