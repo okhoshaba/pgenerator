@@ -13,25 +13,20 @@ import matplotlib.pyplot as loadTrajectory
 import scipy.fftpack
 import math
 
-basis = 20
-amplitudes = 10
+basis = 50
+amplitudes = 40
 Fs = 100
 dt = 1/Fs   # Период времени
 Fc = 10
 sample = 100
-#basis = 9
-#amplitudes = 3
-#Fs = 1000
-#dt = 1/Fs   # Период времени
-#Fc = 10
-#sample = 1000
 t = np.arange(sample)
 loadImpact = np.arange(sample)
-responseTime = np.arange(sample)
+#responseTime = np.arange(sample)
+#rp = np.arange(sample)
+#processingTime = np.arange(sample)
 #procTime = np.arange(sample)
 
 quer = basis + np.sin(2 * np.pi * Fc * t / Fs) * amplitudes
-processingTime = 0.1 / quer
 
 # Internal cycles = intCount
 def runAmplitude(threadName, amplitude):
@@ -50,10 +45,12 @@ try:
       startTime = time.time_ns()
       _thread.start_new_thread(runAmplitude, (extCount, int(quer[extCount]), ) )
       endTime = time.time_ns()
-      responseTime[extCount] = endTime - startTime
-      rp = responseTime[extCount]/1000000
-      loadImpact[extCount] = math.log10(0.1/rp) * 1000
-#!!      print("%s, %s, %s, %s, %s, %s, %s" % (extCount, int(quer[extCount]), 0.1, responseTime[extCount]/1000000, 0.1/rp, math.log10(0.1/rp)*10, loadImpact[extCount]))
+      newRT = (endTime - startTime)/1000000000
+      newPT = 0.1/quer[extCount]
+      newLI = math.log10(newRT/newPT)*10.0
+      loadImpact[extCount] = newLI
+      print("%s, %s, %s" % (newRT, newPT, newLI))
+
       time.sleep(0.1)
 #      os.system("curl 192.168.222.19:9000 > /dev/null 2>&1")
       #os.system("echo curl")
