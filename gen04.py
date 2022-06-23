@@ -13,12 +13,18 @@ import matplotlib.pyplot as loadTrajectory
 import scipy.fftpack
 import math
 
-basis = 9
-amplitudes = 3
-Fs = 1000
+basis = 20
+amplitudes = 10
+Fs = 100
 dt = 1/Fs   # Период времени
 Fc = 10
-sample = 1000
+sample = 100
+#basis = 9
+#amplitudes = 3
+#Fs = 1000
+#dt = 1/Fs   # Период времени
+#Fc = 10
+#sample = 1000
 t = np.arange(sample)
 loadImpact = np.arange(sample)
 responseTime = np.arange(sample)
@@ -39,6 +45,7 @@ def runAmplitude(threadName, amplitude):
 
 try:
     # External cycles = extCount
+   print ("begin: -- %s --" % (time.ctime(time.time()) ))
    for extCount in range(sample):
       startTime = time.time_ns()
       _thread.start_new_thread(runAmplitude, (extCount, int(quer[extCount]), ) )
@@ -57,11 +64,12 @@ except:
    print("Error run generator")
 
 # Build a graph
-loadTrajectory.plot(quer)
-loadTrajectory.title('Load Trajectory')
-loadTrajectory.xlabel('Time (in msec)')
-loadTrajectory.ylabel('Amplitude (in queries)')
-loadTrajectory.show()
+print ("end: == %s ==" % (time.ctime(time.time()) ))
+# !! loadTrajectory.plot(quer)
+# !! loadTrajectory.title('Load Trajectory')
+# !! loadTrajectory.xlabel('Time (in msec)')
+# !! loadTrajectory.ylabel('Amplitude (in queries)')
+# !! loadTrajectory.show()
 
 #   Fourier Analise
 # ...
