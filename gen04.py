@@ -13,11 +13,11 @@ import matplotlib.pyplot as loadTrajectory
 import scipy.fftpack
 import math
 
-basis = 100
-amplitudes = 50
+basis = 50
+amplitudes = 40
 Fs = 100
 dt = 1/Fs   # Период времени
-Fc = 10
+Fc = 20
 sample = 100
 t = np.arange(sample)
 loadImpact = np.arange(sample)
@@ -32,7 +32,7 @@ quer = basis + np.sin(2 * np.pi * Fc * t / Fs) * amplitudes
 def runAmplitude(threadName, amplitude):
    intCount = 0
    while intCount < amplitude:
-      os.system("curl 192.168.1.104:9000 > /dev/null 2>&1")
+      os.system("curl 192.168.1.1:80 > /dev/null 2>&1")
       intCount += 1
 #     For diagnose only
 #      print("amplitude = %s" % (intCount))
@@ -84,7 +84,7 @@ fig, ax = plt.subplots()
 
 # Plotting only the left part of the spectrum to not show aliasing
 #ax.plot(xf1, 2.0/N * np.abs(yf1[:N//2]), label='fftpack tutorial')
-ax.plot(xf2, 2.0/Fs * np.abs(yf2[:Fs//2]), label='Integer number of periods')
+ax.plot(xf2, 2.0/Fs * np.abs(yf2[:Fs//2]), label='Periodogramma')
 #ax.plot(xf3, 2.0/N * np.abs(yf3[:N//2]), label='Correct positioning of dates')
 plt.legend()
 plt.grid()
