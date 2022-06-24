@@ -37,7 +37,7 @@ def runAmplitude(threadName, amplitude):
 
 try:
     # External cycles = extCount
-   print ("begin: -- %s --" % (time.ctime(time.time()) ))
+# !!   print ("begin: -- %s --" % (time.ctime(time.time()) ))
    for extCount in range(sample):
       startTime = time.time_ns()
       _thread.start_new_thread(runAmplitude, (extCount, int(quer[extCount]), ) )
@@ -58,7 +58,7 @@ except:
    print("Error run generator")
 
 # Build a graph
-print ("end: == %s ==" % (time.ctime(time.time()) ))
+# !!print ("end: == %s ==" % (time.ctime(time.time()) ))
 # !! loadTrajectory.plot(quer)
 # !! loadTrajectory.title('Load Trajectory')
 # !! loadTrajectory.xlabel('Time (in msec)')
@@ -66,55 +66,30 @@ print ("end: == %s ==" % (time.ctime(time.time()) ))
 # !! loadTrajectory.show()
 
 #   Fourier Analise
-# ...
 x2 = np.linspace(0.0, 1, Fs)
-#y2 = amplitudes * np.sin(2 * np.pi * Fc * x2)
-#yf2 = scipy.fftpack.fft(y2)
-#yf2 = scipy.fftpack.fft(math.log10(responseTime/processingTime))
-# !! yf2 = scipy.fftpack.fft(processingTime)
 xf2 = np.linspace(0.0, 1.0/(2.0*dt), Fs//2)
 yf2 = scipy.fftpack.fft(loadImpact)
 yy = np.arange(sample/2)
 yy = 2.0/Fs * np.abs(yf2[:Fs//2])
 ymax = max(2.0/Fs * np.abs(yf2[:Fs//2]))
-print(ymax)
-#print(xf2)
-#print(yy)
+#print(ymax)
 
-myarray = np.array([xf2,yy])
-print(myarray)
+myarray = np.array(yy)
+#print(myarray)
 
-#dict1={xf2:yy}
+res = [(x[1],x[0][0]) for x in np.ndenumerate(myarray)]
+res = sorted(res, key=lambda item: item[0], reverse=True)
+print(res)
 
-
-fig, ax = plt.subplots()
+#!! fig, ax = plt.subplots()
 
 # Plotting only the left part of the spectrum to not show aliasing
-#ax.plot(xf1, 2.0/N * np.abs(yf1[:N//2]), label='fftpack tutorial')
-ax.plot(xf2, 2.0/Fs * np.abs(yf2[:Fs//2]), label='Periodogramma')
-#ax.plot(xf3, 2.0/N * np.abs(yf3[:N//2]), label='Correct positioning of dates')
-plt.legend()
-plt.grid()
-plt.show()
-
-#print(yf2[:Fs//2])
-
-#plt.plot(processingTime)
-#  plt.plot(responseTime)
-#  plt.show()
-
-# !! plt.subplot(3,1,1)
-# !! plt.plot(responseTime)
-
-# !! plt.subplot(3,1,2)
-# !! plt.plot(processingTime)
-
-# !! plt.subplot(3,1,3)
-# !! plt.plot(responseTime/processingTime)
-# !! plt.show()
-
+#!! ax.plot(xf2, 2.0/Fs * np.abs(yf2[:Fs//2]), label='Periodogramma')
+#!! plt.legend()
+#!! plt.grid()
+#!! plt.show()
 
 # Wait for End process
-#time.sleep(13)
+time.sleep(13)
 while 0:
    pass
