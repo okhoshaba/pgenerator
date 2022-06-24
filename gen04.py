@@ -13,18 +13,14 @@ import matplotlib.pyplot as loadTrajectory
 import scipy.fftpack
 import math
 
-basis = 50
-amplitudes = 40
+basis = 20
+amplitudes = 9
 Fs = 100
 dt = 1/Fs   # Период времени
 Fc = 20
 sample = 100
 t = np.arange(sample)
 loadImpact = np.arange(sample)
-#responseTime = np.arange(sample)
-#rp = np.arange(sample)
-#processingTime = np.arange(sample)
-#procTime = np.arange(sample)
 
 quer = basis + np.sin(2 * np.pi * Fc * t / Fs) * amplitudes
 
@@ -32,7 +28,8 @@ quer = basis + np.sin(2 * np.pi * Fc * t / Fs) * amplitudes
 def runAmplitude(threadName, amplitude):
    intCount = 0
    while intCount < amplitude:
-      os.system("curl 192.168.1.1:80 > /dev/null 2>&1")
+      os.system("ping -c1 192.168.222.19 > /dev/null 2>&1")
+#      os.system("curl curl 192.168.222.19:9000 > /dev/null 2>&1")
       intCount += 1
 #     For diagnose only
 #      print("amplitude = %s" % (intCount))
@@ -49,13 +46,13 @@ try:
       newPT = 0.1/quer[extCount]
       newLI = math.log10(newRT/newPT)*10.0
       loadImpact[extCount] = newLI
-      print("%s, %s, %s" % (newRT, newPT, newLI))
+#     For diagnose only
+#      print("%s, %s, %s" % (newRT, newPT, newLI))
 
       time.sleep(0.1)
+#     For diagnose only
 #      os.system("curl 192.168.222.19:9000 > /dev/null 2>&1")
       #os.system("echo curl")
-#     For diagnose only
-#      os.system("echo curl")
 
 except:
    print("Error run generator")
@@ -77,8 +74,18 @@ x2 = np.linspace(0.0, 1, Fs)
 # !! yf2 = scipy.fftpack.fft(processingTime)
 xf2 = np.linspace(0.0, 1.0/(2.0*dt), Fs//2)
 yf2 = scipy.fftpack.fft(loadImpact)
+yy = np.arange(sample/2)
+yy = 2.0/Fs * np.abs(yf2[:Fs//2])
 ymax = max(2.0/Fs * np.abs(yf2[:Fs//2]))
 print(ymax)
+#print(xf2)
+#print(yy)
+
+myarray = np.array([xf2,yy])
+print(myarray)
+
+#dict1={xf2:yy}
+
 
 fig, ax = plt.subplots()
 
