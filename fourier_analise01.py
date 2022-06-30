@@ -55,7 +55,7 @@ try:
 #      print("%s, %s, %s" % (newRT, newPT, newLI))
       print("%s, %s, %s" % (newRT, 0.1, newLI))
 
-      time.sleep(0.1)
+      time.sleep(0.01)
 #     For diagnose only
 #      os.system("curl 192.168.222.19:9000 > /dev/null 2>&1")
       #os.system("echo curl")
@@ -96,6 +96,6 @@ print(res)
 #!! plt.show()
 
 # Wait for End process
-time.sleep(13)
+time.sleep(3)
 while 0:
    pass
