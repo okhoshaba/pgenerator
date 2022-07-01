@@ -14,8 +14,8 @@ import matplotlib.pyplot as loadTrajectory
 import scipy.fftpack
 import math
 
-basis = 200
-amplitudes = 100
+basis = 2000
+amplitudes = 1000
 Fs = 100
 dt = 1/Fs   # Период времени
 Fc = 20
@@ -29,9 +29,9 @@ quer = basis + np.sin(2 * np.pi * Fc * t / Fs) * amplitudes
 def runAmplitude(threadName, amplitude):
    intCount = 0
    while intCount < amplitude:
-      os.system("ping -c1 192.168.1.1 > /dev/null 2>&1")
+      os.system("ping -c1 192.168.1.104 > /dev/null 2>&1")
 #      os.system("ping -c1 192.168.222.19 > /dev/null 2>&1")
-#      os.system("curl curl 192.168.222.19:9000 > /dev/null 2>&1")
+#      os.system("curl 192.168.1.104:9000 > /dev/null 2>&1")
       intCount += 1
 #     For diagnose only
 #      print("amplitude = %s" % (intCount))
