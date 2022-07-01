@@ -14,8 +14,8 @@ import matplotlib.pyplot as loadTrajectory
 import scipy.fftpack
 import math
 
-basis = 20
-amplitudes = 9
+basis = 200
+amplitudes = 100
 Fs = 100
 dt = 1/Fs   # Период времени
 Fc = 20
@@ -44,7 +44,7 @@ try:
       startTime = time.time_ns()
       _thread.start_new_thread(runAmplitude, (extCount, int(quer[extCount]), ) )
       endTime = time.time_ns()
-      newRT = (endTime - startTime)/1000000
+      newRT = 1000000/(endTime - startTime)
 #      newPT = 0.1/quer[extCount]
 #      newLI = math.log10(newRT/newPT)*10.0
 #!!!  If PT = 0.1 and coef = 10, we use:
@@ -53,9 +53,9 @@ try:
       loadImpact[extCount] = newLI
 #     For diagnose only
 #      print("%s, %s, %s" % (newRT, newPT, newLI))
-      print("%s, %s, %s" % (newRT, 0.1, newLI))
+      print("%s, %s, %s" % (newRT, 0.001, newLI))
 
-      time.sleep(0.01)
+      time.sleep(0.001)
 #     For diagnose only
 #      os.system("curl 192.168.222.19:9000 > /dev/null 2>&1")
       #os.system("echo curl")
@@ -87,15 +87,15 @@ res = [(x[1],x[0][0]) for x in np.ndenumerate(myarray)]
 res = sorted(res, key=lambda item: item[0], reverse=True)
 print(res)
 
-#!! fig, ax = plt.subplots()
+fig, ax = plt.subplots()
 
 # Plotting only the left part of the spectrum to not show aliasing
-#!! ax.plot(xf2, 2.0/Fs * np.abs(yf2[:Fs//2]), label='Periodogramma')
-#!! plt.legend()
-#!! plt.grid()
-#!! plt.show()
+ax.plot(xf2, 2.0/Fs * np.abs(yf2[:Fs//2]), label='Periodogramma')
+plt.legend()
+plt.grid()
+plt.show()
 
 # Wait for End process
-time.sleep(3)
+#time.sleep(3)
 while 0:
    pass
